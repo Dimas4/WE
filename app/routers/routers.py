@@ -6,10 +6,10 @@ from flask import jsonify, request
 from flask_classy import FlaskView
 
 from app.exceptions.exceptions import DomainError
-from app.backend.celery import start_search
-from app.service.service import Service
+from utils.celery.celery import start_search
 from app.database.model import EmailsS, db
 from utils.response.response import Response
+from app.service.service import Service
 
 
 response = Response()
@@ -21,8 +21,8 @@ class BaseView(FlaskView):
     def get(self, token):
         result = db.session.query(EmailsS).filter_by(token=token).first()
         if result:
-            return jsonify(result.answer)
-        return jsonify({'answer': 'not found'})
+            return result.answer
+        return response.response_404()
 
     def post(self):
         data_json = json.loads(request.data)
