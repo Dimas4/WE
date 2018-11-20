@@ -6,17 +6,27 @@ from app.exceptions.exceptions import DomainRegexError, DomainNotFoundError
 
 
 class Domain:
-    def __init__(self, domain, regex=None, security=None):
-        self.domain = domain
-        self.regex = r'^[a-zA-Z\d-]{,63}(\.[a-zA-Z\d-]{,4})*$'
-        self.security = "http"
-        self._url = f"{self.security}://{self.domain}"
+    def __init__(self, url):
+        self._url = url
+
+        self.regex = re.compile(
+            r'^(?:http|ftp)s?://'
+            r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
+            r'localhost|'
+            r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
+            r'(?::\d+)?'
+            r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+
+        self.domain = self._url.split('/')[2]  # TODO add method to get domain
 
     def _make_request(self, url):
-        return requests.get(url)
+        try:
+            return requests.get(url, timeout=2)
+        except requests.exceptions.ConnectionError:
+            raise DomainNotFoundError
 
     def check_regex(self):
-        url = re.search(self.regex, self.domain)
+        url = re.match(self.regex, self._url)
         if url:
             return url.group(0)
         raise DomainRegexError
