@@ -6,10 +6,11 @@ from flask import jsonify, request
 from flask_classy import FlaskView
 
 from app.exceptions.exceptions import DomainError
+from app.service.domain.service import Service as Service_Domain
+from app.service.database.service import Service as Service_DB
+
 from utils.celery.celery import start_search
-from app.database.model import EmailsS, db
 from utils.response.response import Response
-from app.service.service import Service
 
 
 response = Response()
@@ -19,7 +20,7 @@ class BaseView(FlaskView):
     route_base = '/api/getemail/'
 
     def get(self, token):
-        result = EmailsS.get_one_by_token(token=token)
+        result = Service_DB.get_one_by_token(token=token)
         if result:
             return result.answer
         return response.response_404()
@@ -30,7 +31,7 @@ class BaseView(FlaskView):
         if url is None:
             return response.response_400()
 
-        service = Service(url)
+        service = Service_Domain(url)
         try:
             service.check_domain()
         except DomainError:
