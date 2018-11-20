@@ -27,7 +27,7 @@ You can start directly:
 Or you can use Docker
 
 ```
-$ docker run -p 5000:5000 ivandockerpython/web-crawler-api
+$ docker run -p 8000:8000 ivandockerpython/web-crawler-api
 ```
 
 ## Built With
