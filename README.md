@@ -1,6 +1,6 @@
 # Web-Crawler-API-Flask
 
-Web-Crawler is the API which provide you grab email ID
+Web-Crawler is the API which provide you grab email ID from different sites
 
 ## Getting Started
 
@@ -10,8 +10,8 @@ Web-Crawler is the API which provide you grab email ID
 Install:
 
 ```
-virtualenv venv
-source venv/bin/activate
+$ virtualenv venv
+$ source venv/bin/activate
 (venv) $ pip install -r requirements.txt
 ```
 
@@ -27,7 +27,7 @@ You can start directly:
 Or you can use Docker
 
 ```
-docker run -p 5000:5000 ivandockerpython/web-crawler-api
+$ docker run -p 5000:5000 ivandockerpython/web-crawler-api
 ```
 
 ## Built With
