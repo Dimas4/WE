@@ -17,8 +17,6 @@ class Domain:
             r'(?::\d+)?'
             r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
-        self.domain = self._url.split('/')[2]  # TODO add method to get domain
-
     def _make_request(self, url):
         try:
             return requests.get(url, timeout=2)
