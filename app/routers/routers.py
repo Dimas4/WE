@@ -19,7 +19,7 @@ class BaseView(FlaskView):
     route_base = '/api/getemail/'
 
     def get(self, token):
-        result = db.session.query(EmailsS).filter_by(token=token).first()
+        result = EmailsS.get_one_by_token(token=token)
         if result:
             return result.answer
         return response.response_404()
