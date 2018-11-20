@@ -1,5 +1,5 @@
 from app.routers.routers import BaseView
-from app.database.model import *
+from app.create_app.create import app
 
 
 if __name__ == '__main__':

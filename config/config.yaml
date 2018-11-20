@@ -1,0 +1,7 @@
+database:
+  SQLALCHEMY_DATABASE_URI: sqlite:////{path}/db.sqlite3
+
+
+celery:
+  CELERY_BROKER_URL: redis://localhost:6379
+  CELERY_RESULT_BACKEND: redis://localhost:6379

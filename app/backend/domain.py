@@ -9,7 +9,7 @@ class Domain:
     def __init__(self, url):
         self._url = url
 
-        self.regex = re.compile(
+        self._regex = re.compile(
             r'^(?:http|ftp)s?://'
             r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
             r'localhost|'
@@ -24,7 +24,7 @@ class Domain:
             raise DomainNotFoundError
 
     def check_regex(self):
-        url = re.match(self.regex, self._url)
+        url = re.match(self._regex, self._url)
         if url:
             return url.group(0)
         raise DomainRegexError

@@ -21,7 +21,7 @@ $ source venv/bin/activate
 You can start directly:
 
 ```
-(venv) $ python app.py
+(venv) $ python run.py
 ```
 
 Or you can use Docker

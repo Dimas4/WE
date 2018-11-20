@@ -7,7 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 path = pathlib.Path(__file__).parent.parent.parent
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:////{path}/db.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].format(path=path)
+
 db = SQLAlchemy(app)
 
 
