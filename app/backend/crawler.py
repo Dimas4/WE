@@ -18,7 +18,7 @@ class Crawler:
         return '/'.join(url.split('/')[:3])
 
     def _make_request(self, url):
-        return requests.get(url, timeout=2)
+        return requests.get(url, timeout=5)
 
     def _get_html(self, url):
         request = self._make_request(url)
