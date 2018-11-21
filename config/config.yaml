@@ -1,7 +1,8 @@
 database:
-  SQLALCHEMY_DATABASE_URI: sqlite:////{path}/db.sqlite3
+  SQLALCHEMY_DATABASE_URI: "postgres://marco:foobarbaz@172.17.0.1:5432/testdb"
+
 
 
 celery:
-  CELERY_BROKER_URL: redis://localhost:6379
-  CELERY_RESULT_BACKEND: redis://localhost:6379
+  CELERY_BROKER_URL: redis://172.17.0.1:6379
+  CELERY_RESULT_BACKEND: redis://172.17.0.1:6379

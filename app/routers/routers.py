@@ -20,6 +20,9 @@ class BaseView(FlaskView):
     route_base = '/api/getemail/'
 
     def get(self, token):
+        all_data = Service_DB.get_all()
+        with open('result.txt', 'w') as file:
+            file.write(str(all_data))
         result = Service_DB.get_one_by_token(token=token)
         if result:
             return result.answer
