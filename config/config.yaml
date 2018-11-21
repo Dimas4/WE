@@ -1,5 +1,6 @@
 database:
-  SQLALCHEMY_DATABASE_URI: sqlite:////{path}/db.sqlite3
+  SQLALCHEMY_DATABASE_URI: "postgres://marco:foobarbaz@172.17.0.1:5432/testdb"
+
 
 
 celery:
